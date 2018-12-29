@@ -4,14 +4,14 @@
     using System.Diagnostics;
     using System.IO;
 
-    using AspNetCoreTemplate.Data;
-    using AspNetCoreTemplate.Data.Common;
-    using AspNetCoreTemplate.Data.Common.Repositories;
-    using AspNetCoreTemplate.Data.Models;
-    using AspNetCoreTemplate.Data.Repositories;
-    using AspNetCoreTemplate.Data.Seeding;
-    using AspNetCoreTemplate.Services.Data;
-    using AspNetCoreTemplate.Services.Messaging;
+    using ShoppingApp.Data;
+    using ShoppingApp.Data.Common;
+    using ShoppingApp.Data.Common.Repositories;
+    using ShoppingApp.Data.Models;
+    using ShoppingApp.Data.Repositories;
+    using ShoppingApp.Data.Seeding;
+    using ShoppingApp.Services.Data;
+    using ShoppingApp.Services.Messaging;
 
     using CommandLine;
 
