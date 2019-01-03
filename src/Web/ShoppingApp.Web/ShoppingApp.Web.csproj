@@ -31,6 +31,7 @@
     <ProjectReference Include="..\..\Services\ShoppingApp.Services.Mapping\ShoppingApp.Services.Mapping.csproj" />
     <ProjectReference Include="..\..\Services\ShoppingApp.Services.Messaging\ShoppingApp.Services.Messaging.csproj" />
     <ProjectReference Include="..\..\Services\ShoppingApp.Services\ShoppingApp.Services.csproj" />
+    <ProjectReference Include="..\..\ShoppingApp.Services.Models\ShoppingApp.Services.Models.csproj" />
     <ProjectReference Include="..\ShoppingApp.Web.Infrastructure\ShoppingApp.Web.Infrastructure.csproj" />
   </ItemGroup>
 </Project>

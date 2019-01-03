@@ -258,7 +258,7 @@ namespace ShoppingApp.Data.Migrations
                         .IsRequired()
                         .HasConversion(new ValueConverter<string, string>(v => default(string), v => default(string), new ConverterMappingHints(size: 1)));
 
-                    b.Property<byte[]>("Image");
+                    b.Property<string>("Image");
 
                     b.Property<DateTime?>("ModifiedOn");
 

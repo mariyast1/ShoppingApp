@@ -37,6 +37,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\ShoppingApp.Common\ShoppingApp.Common.csproj" />
+    <ProjectReference Include="..\..\ShoppingApp.Services.Models\ShoppingApp.Services.Models.csproj" />
     <ProjectReference Include="..\ShoppingApp.Data.Common\ShoppingApp.Data.Common.csproj" />
     <ProjectReference Include="..\ShoppingApp.Data.Models\ShoppingApp.Data.Models.csproj" />
   </ItemGroup>

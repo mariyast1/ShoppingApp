@@ -21,6 +21,8 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Data\ShoppingApp.Data.Common\ShoppingApp.Data.Common.csproj" />
     <ProjectReference Include="..\..\Data\ShoppingApp.Data.Models\ShoppingApp.Data.Models.csproj" />
+    <ProjectReference Include="..\..\ShoppingApp.Services.Models\ShoppingApp.Services.Models.csproj" />
+    <ProjectReference Include="..\ShoppingApp.Services.Mapping\ShoppingApp.Services.Mapping.csproj" />
   </ItemGroup>
 
 </Project>

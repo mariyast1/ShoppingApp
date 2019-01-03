@@ -8,11 +8,11 @@
 
     public class HomeController : BaseController
     {
-        private readonly IRepository<ApplicationUser> applicationUserRepository;
+        private readonly IRepository<Product> productRepository;
 
-        public HomeController(IRepository<ApplicationUser> applicationUserRepository)
+        public HomeController(IRepository<Product> productRepository)
         {
-            this.applicationUserRepository = applicationUserRepository;
+            this.productRepository = productRepository;
         }
 
         public IActionResult Index()
@@ -22,7 +22,8 @@
 
         public IActionResult Privacy()
         {
-           return this.View();
+           
+            return this.View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

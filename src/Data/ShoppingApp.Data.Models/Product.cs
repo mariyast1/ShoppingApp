@@ -14,12 +14,12 @@ namespace ShoppingApp.Data.Models
 
         public char Gender { get; set; }
 
-        public int CategoryId { get; set; }
-
         public SubCategory SubCategory { get; set; }
+
+        public int CategoryId { get; set; }
 
         public int SubCategoryId { get; set; }
 
-        public Order Order { get; set; }
+        public string Image { get; set; }
     }
 }
