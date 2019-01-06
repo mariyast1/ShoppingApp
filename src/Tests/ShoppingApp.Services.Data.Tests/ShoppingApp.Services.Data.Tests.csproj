@@ -28,7 +28,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Data\ShoppingApp.Data\ShoppingApp.Data.csproj" />
-    <ProjectReference Include="..\..\Services\ShoppingApp.Services.Data\ShoppingApp.Services.Data.csproj" />
   </ItemGroup>
 
 </Project>

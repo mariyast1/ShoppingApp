@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ShoppingApp.Data;
 
 namespace ShoppingApp.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190106184121_Second")]
+    partial class Second
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -262,7 +264,7 @@ namespace ShoppingApp.Data.Migrations
 
                     b.Property<bool>("InStock");
 
-                    b.Property<bool>("IsPreferredProduct");
+                    b.Property<bool>("IsPreferredDrink");
 
                     b.Property<string>("LongDescription");
 
@@ -343,6 +345,16 @@ namespace ShoppingApp.Data.Migrations
                     b.ToTable("Settings");
                 });
 
+            modelBuilder.Entity("ShoppingApp.Data.Models.ShoppingCart", b =>
+                {
+                    b.Property<string>("ShoppingCartId")
+                        .ValueGeneratedOnAdd();
+
+                    b.HasKey("ShoppingCartId");
+
+                    b.ToTable("ShoppingCarts");
+                });
+
             modelBuilder.Entity("ShoppingApp.Data.Models.ShoppingCartItem", b =>
                 {
                     b.Property<int>("ShoppingCartItemId")
@@ -358,6 +370,8 @@ namespace ShoppingApp.Data.Migrations
                     b.HasKey("ShoppingCartItemId");
 
                     b.HasIndex("ProductId");
+
+                    b.HasIndex("ShoppingCartId");
 
                     b.ToTable("ShoppingCartItems");
                 });
@@ -468,6 +482,10 @@ namespace ShoppingApp.Data.Migrations
                     b.HasOne("ShoppingApp.Data.Models.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId");
+
+                    b.HasOne("ShoppingApp.Data.Models.ShoppingCart")
+                        .WithMany("ShoppingCartItems")
+                        .HasForeignKey("ShoppingCartId");
                 });
 
             modelBuilder.Entity("ShoppingApp.Data.Models.SubCategory", b =>

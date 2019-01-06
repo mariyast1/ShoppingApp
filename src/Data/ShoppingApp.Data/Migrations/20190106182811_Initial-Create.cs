@@ -284,8 +284,8 @@ namespace ShoppingApp.Data.Migrations
                     Gender = table.Column<string>(nullable: false),
                     CategoryId = table.Column<int>(nullable: false),
                     SubCategoryId = table.Column<int>(nullable: false),
-                    OrderId = table.Column<int>(nullable: true),
-                    Image = table.Column<string>(nullable: true)
+                    Image = table.Column<string>(nullable: true),
+                    OrderId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {

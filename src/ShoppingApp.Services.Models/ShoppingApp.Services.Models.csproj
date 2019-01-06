@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Data\ShoppingApp.Data.Models\ShoppingApp.Data.Models.csproj" />
     <ProjectReference Include="..\Services\ShoppingApp.Services.Mapping\ShoppingApp.Services.Mapping.csproj" />
   </ItemGroup>
 

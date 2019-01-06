@@ -10,7 +10,7 @@ using ShoppingApp.Data;
 namespace ShoppingApp.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190101151238_InitialCreate")]
+    [Migration("20190106182811_Initial-Create")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -408,7 +408,7 @@ namespace ShoppingApp.Data.Migrations
 
             modelBuilder.Entity("ShoppingApp.Data.Models.Product", b =>
                 {
-                    b.HasOne("ShoppingApp.Data.Models.Order", "Order")
+                    b.HasOne("ShoppingApp.Data.Models.Order")
                         .WithMany("Products")
                         .HasForeignKey("OrderId");
 
