@@ -108,6 +108,7 @@
             services.AddScoped(sp => ShoppingCart.GetCart(sp));
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddTransient<IProductRepository, ProductRepository>();
+            services.AddTransient<IOrderRepository, OrderRepository>();
 
 
         }
