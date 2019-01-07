@@ -7,13 +7,12 @@ namespace ShoppingApp.Data.Models
 {
     public class Category : BaseModel<int>
     {
-        public Category()
-        {
-            this.SubCategories = new HashSet<SubCategory>();
-        }
+        public int CategoryId { get; set; }
 
         public string Name { get; set; }
 
-        public ICollection<SubCategory> SubCategories { get; set; }
+        public string Description { get; set; }
+
+        public List<Product> Products { get; set; }
     }
 }

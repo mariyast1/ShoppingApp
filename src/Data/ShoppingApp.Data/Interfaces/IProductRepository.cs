@@ -9,7 +9,9 @@ namespace ShoppingApp.Web.Interfaces
     public interface IProductRepository
     {
         IEnumerable<Product> Products { get; }
+
         IEnumerable<Product> PreferredProducts { get; }
+
         Product GetProductById(int productId);
     }
 }
