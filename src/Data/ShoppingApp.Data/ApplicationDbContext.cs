@@ -34,7 +34,7 @@
 
         public DbSet<Product> Products { get; set; }
 
-        public DbSet<Receipt> Receipts { get; set; }
+        public DbSet<OrderDetail> OrderDetails { get; set; }
 
         public override int SaveChanges() => this.SaveChanges(true);
 

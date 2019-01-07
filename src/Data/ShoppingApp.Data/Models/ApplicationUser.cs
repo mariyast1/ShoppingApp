@@ -17,7 +17,7 @@ namespace ShoppingApp.Data.Models
             this.Claims = new HashSet<IdentityUserClaim<string>>();
             this.Logins = new HashSet<IdentityUserLogin<string>>();
             this.Orders = new HashSet<Order>();
-            this.Receipts = new HashSet<Receipt>();
+            
         }
 
         // Audit info
@@ -42,6 +42,6 @@ namespace ShoppingApp.Data.Models
 
         public virtual ICollection<Order> Orders { get; set; }
 
-        public virtual ICollection<Receipt> Receipts { get; set; }
+        
     }
 }

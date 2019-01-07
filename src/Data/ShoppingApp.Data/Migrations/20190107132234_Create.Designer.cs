@@ -10,8 +10,8 @@ using ShoppingApp.Data;
 namespace ShoppingApp.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190106182811_Initial-Create")]
-    partial class InitialCreate
+    [Migration("20190107132234_Create")]
+    partial class Create
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -212,7 +212,11 @@ namespace ShoppingApp.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("CategoryId");
+
                     b.Property<DateTime>("CreatedOn");
+
+                    b.Property<string>("Description");
 
                     b.Property<DateTime?>("ModifiedOn");
 
@@ -229,21 +233,82 @@ namespace ShoppingApp.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("AddressLine1")
+                        .IsRequired()
+                        .HasMaxLength(100);
+
+                    b.Property<string>("AddressLine2");
+
+                    b.Property<string>("ApplicationUserId");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasMaxLength(25);
+
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
                     b.Property<DateTime>("CreatedOn");
 
-                    b.Property<DateTime>("DeliveryDate");
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(50);
 
                     b.Property<DateTime?>("ModifiedOn");
 
-                    b.Property<string>("RecepientId");
+                    b.Property<int>("OrderId");
 
-                    b.Property<int>("Status");
+                    b.Property<DateTime>("OrderPlaced");
+
+                    b.Property<decimal>("OrderTotal");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasMaxLength(25);
+
+                    b.Property<string>("ZipCode")
+                        .IsRequired()
+                        .HasMaxLength(10);
 
                     b.HasKey("Id");
 
-                    b.HasIndex("RecepientId");
+                    b.HasIndex("ApplicationUserId");
 
                     b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("ShoppingApp.Data.Models.OrderDetail", b =>
+                {
+                    b.Property<int>("OrderDetailId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Amount");
+
+                    b.Property<int>("DrinkId");
+
+                    b.Property<int>("OrderId");
+
+                    b.Property<decimal>("Price");
+
+                    b.Property<int?>("ProductId");
+
+                    b.HasKey("OrderDetailId");
+
+                    b.HasIndex("OrderId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("OrderDetails");
                 });
 
             modelBuilder.Entity("ShoppingApp.Data.Models.Product", b =>
@@ -256,56 +321,33 @@ namespace ShoppingApp.Data.Migrations
 
                     b.Property<DateTime>("CreatedOn");
 
-                    b.Property<string>("Gender")
-                        .IsRequired()
-                        .HasConversion(new ValueConverter<string, string>(v => default(string), v => default(string), new ConverterMappingHints(size: 1)));
-
                     b.Property<string>("Image");
+
+                    b.Property<string>("ImageThumbnailUrl");
+
+                    b.Property<string>("ImageUrl");
+
+                    b.Property<bool>("InStock");
+
+                    b.Property<bool>("IsPreferredProduct");
+
+                    b.Property<string>("LongDescription");
 
                     b.Property<DateTime?>("ModifiedOn");
 
-                    b.Property<int?>("OrderId");
+                    b.Property<string>("Name");
 
                     b.Property<decimal>("Price");
 
-                    b.Property<int>("Size");
+                    b.Property<int>("ProductId");
 
-                    b.Property<int>("SubCategoryId");
+                    b.Property<string>("ShortDescription");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OrderId");
-
-                    b.HasIndex("SubCategoryId");
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("Products");
-                });
-
-            modelBuilder.Entity("ShoppingApp.Data.Models.Receipt", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("CreatedOn");
-
-                    b.Property<decimal>("Fee");
-
-                    b.Property<DateTime>("IssuedOn");
-
-                    b.Property<DateTime?>("ModifiedOn");
-
-                    b.Property<int>("OrderId");
-
-                    b.Property<string>("RecepientId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OrderId");
-
-                    b.HasIndex("RecepientId");
-
-                    b.ToTable("Receipts");
                 });
 
             modelBuilder.Entity("ShoppingApp.Data.Models.Setting", b =>
@@ -333,25 +375,23 @@ namespace ShoppingApp.Data.Migrations
                     b.ToTable("Settings");
                 });
 
-            modelBuilder.Entity("ShoppingApp.Data.Models.SubCategory", b =>
+            modelBuilder.Entity("ShoppingApp.Data.Models.ShoppingCartItem", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ShoppingCartItemId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CategoryId");
+                    b.Property<int>("Amount");
 
-                    b.Property<DateTime>("CreatedOn");
+                    b.Property<int?>("ProductId");
 
-                    b.Property<DateTime?>("ModifiedOn");
+                    b.Property<string>("ShoppingCartId");
 
-                    b.Property<string>("Name");
+                    b.HasKey("ShoppingCartItemId");
 
-                    b.HasKey("Id");
+                    b.HasIndex("ProductId");
 
-                    b.HasIndex("CategoryId");
-
-                    b.ToTable("SubCategory");
+                    b.ToTable("ShoppingCartItems");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -401,41 +441,36 @@ namespace ShoppingApp.Data.Migrations
 
             modelBuilder.Entity("ShoppingApp.Data.Models.Order", b =>
                 {
-                    b.HasOne("ShoppingApp.Data.Models.ApplicationUser", "Recepient")
+                    b.HasOne("ShoppingApp.Data.Models.ApplicationUser")
                         .WithMany("Orders")
-                        .HasForeignKey("RecepientId");
+                        .HasForeignKey("ApplicationUserId");
+                });
+
+            modelBuilder.Entity("ShoppingApp.Data.Models.OrderDetail", b =>
+                {
+                    b.HasOne("ShoppingApp.Data.Models.Order", "Order")
+                        .WithMany("OrderLines")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("ShoppingApp.Data.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId");
                 });
 
             modelBuilder.Entity("ShoppingApp.Data.Models.Product", b =>
                 {
-                    b.HasOne("ShoppingApp.Data.Models.Order")
-                        .WithMany("Products")
-                        .HasForeignKey("OrderId");
-
-                    b.HasOne("ShoppingApp.Data.Models.SubCategory", "SubCategory")
-                        .WithMany("Products")
-                        .HasForeignKey("SubCategoryId")
-                        .OnDelete(DeleteBehavior.Restrict);
-                });
-
-            modelBuilder.Entity("ShoppingApp.Data.Models.Receipt", b =>
-                {
-                    b.HasOne("ShoppingApp.Data.Models.Order", "Order")
-                        .WithMany()
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("ShoppingApp.Data.Models.ApplicationUser", "Recepient")
-                        .WithMany("Receipts")
-                        .HasForeignKey("RecepientId");
-                });
-
-            modelBuilder.Entity("ShoppingApp.Data.Models.SubCategory", b =>
-                {
                     b.HasOne("ShoppingApp.Data.Models.Category", "Category")
-                        .WithMany("SubCategories")
+                        .WithMany("Products")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("ShoppingApp.Data.Models.ShoppingCartItem", b =>
+                {
+                    b.HasOne("ShoppingApp.Data.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId");
                 });
 #pragma warning restore 612, 618
         }
