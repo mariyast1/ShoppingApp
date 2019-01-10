@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
 using ShoppingApp.Data.Common.Models;
-using ShoppingApp.Data.Models.enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

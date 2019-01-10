@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ShoppingApp.Data.Migrations
 {
-    public partial class Create : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -61,17 +61,14 @@ namespace ShoppingApp.Data.Migrations
                 name: "Categories",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    CategoryId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    CreatedOn = table.Column<DateTime>(nullable: false),
-                    ModifiedOn = table.Column<DateTime>(nullable: true),
-                    CategoryId = table.Column<int>(nullable: false),
                     Name = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Categories", x => x.Id);
+                    table.PrimaryKey("PK_Categories", x => x.CategoryId);
                 });
 
             migrationBuilder.CreateTable(
@@ -235,11 +232,8 @@ namespace ShoppingApp.Data.Migrations
                 name: "Products",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    ProductId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    CreatedOn = table.Column<DateTime>(nullable: false),
-                    ModifiedOn = table.Column<DateTime>(nullable: true),
-                    ProductId = table.Column<int>(nullable: false),
                     Name = table.Column<string>(nullable: true),
                     ShortDescription = table.Column<string>(nullable: true),
                     LongDescription = table.Column<string>(nullable: true),
@@ -253,12 +247,12 @@ namespace ShoppingApp.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Products", x => x.Id);
+                    table.PrimaryKey("PK_Products", x => x.ProductId);
                     table.ForeignKey(
                         name: "FK_Products_Categories_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "Categories",
-                        principalColumn: "Id",
+                        principalColumn: "CategoryId",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -287,7 +281,7 @@ namespace ShoppingApp.Data.Migrations
                         name: "FK_OrderDetails_Products_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Products",
-                        principalColumn: "Id",
+                        principalColumn: "ProductId",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -308,7 +302,7 @@ namespace ShoppingApp.Data.Migrations
                         name: "FK_ShoppingCartItems_Products_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Products",
-                        principalColumn: "Id",
+                        principalColumn: "ProductId",
                         onDelete: ReferentialAction.Restrict);
                 });
 

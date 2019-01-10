@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ShoppingApp.Data.Models
 {
-    public class Category : BaseModel<int>
+    public class Category 
     {
         public int CategoryId { get; set; }
 

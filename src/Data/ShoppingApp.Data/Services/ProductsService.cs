@@ -25,7 +25,7 @@ namespace ShoppingApp.Services.Data
 
         public TViewModel GetProductById<TViewModel>(int id)
         {
-            var product = this.productsRepository.All().Where(x => x.Id == id)
+            var product = this.productsRepository.All().Where(x => x.ProductId == id)
                 .To<TViewModel>().FirstOrDefault();
             return product;
         }

@@ -30,7 +30,7 @@ namespace ShoppingApp.Services.Data
         public int GetCategoryId(string name)
         {
             var category = this.categoriesRepository.All().FirstOrDefault(x => x.Name == name);
-            return category.Id;
+            return category.CategoryId;
         }
     }
 }

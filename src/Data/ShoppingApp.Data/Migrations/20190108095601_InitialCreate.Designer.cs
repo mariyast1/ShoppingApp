@@ -10,8 +10,8 @@ using ShoppingApp.Data;
 namespace ShoppingApp.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190107132234_Create")]
-    partial class Create
+    [Migration("20190108095601_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -208,21 +208,15 @@ namespace ShoppingApp.Data.Migrations
 
             modelBuilder.Entity("ShoppingApp.Data.Models.Category", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("CategoryId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CategoryId");
-
-                    b.Property<DateTime>("CreatedOn");
-
                     b.Property<string>("Description");
-
-                    b.Property<DateTime?>("ModifiedOn");
 
                     b.Property<string>("Name");
 
-                    b.HasKey("Id");
+                    b.HasKey("CategoryId");
 
                     b.ToTable("Categories");
                 });
@@ -313,13 +307,11 @@ namespace ShoppingApp.Data.Migrations
 
             modelBuilder.Entity("ShoppingApp.Data.Models.Product", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ProductId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("CategoryId");
-
-                    b.Property<DateTime>("CreatedOn");
 
                     b.Property<string>("Image");
 
@@ -333,17 +325,13 @@ namespace ShoppingApp.Data.Migrations
 
                     b.Property<string>("LongDescription");
 
-                    b.Property<DateTime?>("ModifiedOn");
-
                     b.Property<string>("Name");
 
                     b.Property<decimal>("Price");
 
-                    b.Property<int>("ProductId");
-
                     b.Property<string>("ShortDescription");
 
-                    b.HasKey("Id");
+                    b.HasKey("ProductId");
 
                     b.HasIndex("CategoryId");
 
