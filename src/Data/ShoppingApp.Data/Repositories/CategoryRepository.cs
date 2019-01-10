@@ -2,6 +2,7 @@
 using ShoppingApp.Data.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace ShoppingApp.Data.Repositories
@@ -16,5 +17,10 @@ namespace ShoppingApp.Data.Repositories
         }
 
         public IEnumerable<Category> Categories => _appDbContext.Categories;
+
+        public IEnumerable<Category> GetAll()
+        {
+            return _appDbContext.Categories.ToList();
+        }
     }
 }
