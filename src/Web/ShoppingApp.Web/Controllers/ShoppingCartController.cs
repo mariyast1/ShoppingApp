@@ -46,12 +46,12 @@ namespace ShoppingApp.Web.Controllers
             return RedirectToAction("Index");
         }
 
-        public RedirectToActionResult RemoveFromShoppingCart(int drinkId)
+        public RedirectToActionResult RemoveFromShoppingCart(int productId)
         {
-            var selectedDrink = _productRepository.Products.FirstOrDefault(p => p.ProductId == drinkId);
-            if (selectedDrink != null)
+            var selectedProduct = _productRepository.Products.FirstOrDefault(p => p.ProductId == productId);
+            if (selectedProduct != null)
             {
-                _shoppingCart.RemoveFromCart(selectedDrink);
+                _shoppingCart.RemoveFromCart(selectedProduct);
             }
             return RedirectToAction("Index");
         }

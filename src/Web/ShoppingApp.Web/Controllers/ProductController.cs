@@ -35,9 +35,9 @@ namespace ShoppingApp.Web.Controllers
             else
             {
                 if (string.Equals("White Wine", _category, StringComparison.OrdinalIgnoreCase))
-                    products = _productRepository.Products.Where(p => p.Category.Name.Equals("White wine")).OrderBy(p => p.Name);
+                    products = _productRepository.Products.Where(p => p.Category.Name.Equals("White Wine")).OrderBy(p => p.Name);
                 else
-                    products = _productRepository.Products.Where(p => p.Category.Name.Equals("Red wine")).OrderBy(p => p.Name);
+                    products = _productRepository.Products.Where(p => p.Category.Name.Equals("Red Wine")).OrderBy(p => p.Name);
 
                 currentCategory = _category;
             }
@@ -67,14 +67,14 @@ namespace ShoppingApp.Web.Controllers
             return View("~/Views/Product/List.cshtml", new ProductListViewModel { Products = products, CurrentCategory = "All drinks" });
         }
 
-        public ViewResult Details(int drinkId)
+        public ViewResult Details(int productId)
         {
-            var drink = _productRepository.Products.FirstOrDefault(d => d.ProductId == drinkId);
-            if (drink == null)
+            var product = _productRepository.Products.FirstOrDefault(d => d.ProductId == productId);
+            if (product == null)
             {
                 return View("~/Views/Error/Error.cshtml");
             }
-            return View(drink);
+            return View(product);
         }
     }
 }
