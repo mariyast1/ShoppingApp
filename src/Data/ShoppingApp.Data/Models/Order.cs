@@ -7,7 +7,7 @@ using System.Text;
 
 namespace ShoppingApp.Data.Models
 {
-    public class Order : BaseModel<int>
+    public class Order
     {
         [BindNever]
         public int OrderId { get; set; }

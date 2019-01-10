@@ -199,11 +199,8 @@ namespace ShoppingApp.Data.Migrations
                 name: "Orders",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    OrderId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    CreatedOn = table.Column<DateTime>(nullable: false),
-                    ModifiedOn = table.Column<DateTime>(nullable: true),
-                    OrderId = table.Column<int>(nullable: false),
                     FirstName = table.Column<string>(maxLength: 50, nullable: false),
                     LastName = table.Column<string>(maxLength: 50, nullable: false),
                     AddressLine1 = table.Column<string>(maxLength: 100, nullable: false),
@@ -219,7 +216,7 @@ namespace ShoppingApp.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Orders", x => x.Id);
+                    table.PrimaryKey("PK_Orders", x => x.OrderId);
                     table.ForeignKey(
                         name: "FK_Orders_AspNetUsers_ApplicationUserId",
                         column: x => x.ApplicationUserId,
@@ -263,10 +260,9 @@ namespace ShoppingApp.Data.Migrations
                     OrderDetailId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     OrderId = table.Column<int>(nullable: false),
-                    DrinkId = table.Column<int>(nullable: false),
+                    ProductId = table.Column<int>(nullable: false),
                     Amount = table.Column<int>(nullable: false),
-                    Price = table.Column<decimal>(nullable: false),
-                    ProductId = table.Column<int>(nullable: true)
+                    Price = table.Column<decimal>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -275,7 +271,7 @@ namespace ShoppingApp.Data.Migrations
                         name: "FK_OrderDetails_Orders_OrderId",
                         column: x => x.OrderId,
                         principalTable: "Orders",
-                        principalColumn: "Id",
+                        principalColumn: "OrderId",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_OrderDetails_Products_ProductId",

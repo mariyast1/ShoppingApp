@@ -32,7 +32,7 @@ namespace ShoppingApp.Data.Repositories
                 var orderDetail = new OrderDetail()
                 {
                     Amount = shoppingCartItem.Amount,
-                    DrinkId = shoppingCartItem.Product.ProductId,
+                    ProductId = shoppingCartItem.Product.ProductId,
                     OrderId = order.OrderId,
                     Price = shoppingCartItem.Product.Price
                 };

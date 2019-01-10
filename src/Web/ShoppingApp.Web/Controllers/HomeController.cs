@@ -8,12 +8,6 @@
 
     public class HomeController : BaseController
     {
-        private readonly IRepository<Product> productRepository;
-
-        public HomeController(IRepository<Product> productRepository)
-        {
-            this.productRepository = productRepository;
-        }
 
         public IActionResult Index()
         {

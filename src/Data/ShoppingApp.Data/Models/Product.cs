@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ShoppingApp.Data.Models
 {
-   public class Product 
+   public class Product
     {
         public int ProductId { get; set; }
 

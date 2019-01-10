@@ -10,7 +10,7 @@ using ShoppingApp.Data;
 namespace ShoppingApp.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190110072000_InitialCreate")]
+    [Migration("20190110120508_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -223,7 +223,7 @@ namespace ShoppingApp.Data.Migrations
 
             modelBuilder.Entity("ShoppingApp.Data.Models.Order", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("OrderId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -243,8 +243,6 @@ namespace ShoppingApp.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(50);
 
-                    b.Property<DateTime>("CreatedOn");
-
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(50);
@@ -256,10 +254,6 @@ namespace ShoppingApp.Data.Migrations
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasMaxLength(50);
-
-                    b.Property<DateTime?>("ModifiedOn");
-
-                    b.Property<int>("OrderId");
 
                     b.Property<DateTime>("OrderPlaced");
 
@@ -273,7 +267,7 @@ namespace ShoppingApp.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(10);
 
-                    b.HasKey("Id");
+                    b.HasKey("OrderId");
 
                     b.HasIndex("ApplicationUserId");
 
@@ -288,13 +282,11 @@ namespace ShoppingApp.Data.Migrations
 
                     b.Property<int>("Amount");
 
-                    b.Property<int>("DrinkId");
-
                     b.Property<int>("OrderId");
 
                     b.Property<decimal>("Price");
 
-                    b.Property<int?>("ProductId");
+                    b.Property<int>("ProductId");
 
                     b.HasKey("OrderDetailId");
 
@@ -443,7 +435,8 @@ namespace ShoppingApp.Data.Migrations
 
                     b.HasOne("ShoppingApp.Data.Models.Product", "Product")
                         .WithMany()
-                        .HasForeignKey("ProductId");
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("ShoppingApp.Data.Models.Product", b =>
